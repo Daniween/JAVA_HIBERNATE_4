@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.clinique.vue.PatientFxmlControleur"
+            prefHeight="620.0" prefWidth="820.0">
+
+    <top>
+        <Label text="Gestion des patients" BorderPane.alignment="CENTER">
+            <font>
+                <javafx.scene.text.Font name="System Bold" size="20.0"/>
+            </font>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </Label>
+    </top>
+
+    <center>
+        <TableView fx:id="tablePatients" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="colId" text="Id" prefWidth="40.0"/>
+                <TableColumn fx:id="colNom" text="Nom" prefWidth="130.0"/>
+                <TableColumn fx:id="colPrenom" text="Prénom" prefWidth="130.0"/>
+                <TableColumn fx:id="colTelephone" text="Téléphone" prefWidth="120.0"/>
+                <TableColumn fx:id="colMedecin" text="Médecin traitant" prefWidth="260.0"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <VBox spacing="10.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="Patient :">
+                <font>
+                    <javafx.scene.text.Font name="System Bold" size="13.0"/>
+                </font>
+            </Label>
+
+            <GridPane hgap="10.0" vgap="8.0">
+                <Label text="Nom :" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="champNom" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Prénom :" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                <TextField fx:id="champPrenom" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                <Label text="Téléphone :" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="champTelephone" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <!-- La relation ManyToOne côté formulaire : on choisit UN médecin parmi la liste -->
+                <Label text="Médecin :" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                <ComboBox fx:id="comboMedecin" prefWidth="250.0" promptText="Choisir un médecin"
+                          GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+            </GridPane>
+
+            <Label text="Médecin traitant du patient sélectionné :">
+                <font>
+                    <javafx.scene.text.Font name="System Bold" size="13.0"/>
+                </font>
+            </Label>
+
+            <GridPane hgap="10.0" vgap="8.0">
+                <Label text="Nom :" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <Label fx:id="labelMedecinNom" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Prénom :" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                <Label fx:id="labelMedecinPrenom" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                <Label text="Spécialité :" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <Label fx:id="labelMedecinSpecialite" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <HBox spacing="10.0">
+                <Button text="Modifier" onAction="#onModifier"/>
+                <Button text="Supprimer" onAction="#onSupprimer"/>
+                <Button text="Effacer le formulaire" onAction="#onEffacer"/>
+                <Button text="Rafraîchir" onAction="#onRafraichir"/>
+                <Button text="Gérer les médecins" onAction="#onVoirMedecins"/>
+                <Button text="Gérer les rendez-vous" onAction="#onVoirRendezVous"/>
+                <Button text="Enregistrer médecin / patient" onAction="#onVoirInscription"/>
+            </HBox>
+
+            <Label fx:id="labelMessage" textFill="#b00020"/>
+        </VBox>
+    </bottom>
+
+</BorderPane>

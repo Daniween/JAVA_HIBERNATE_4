@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- Paramètres de connexion JDBC vers MySQL -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/appdb?serverTimezone=UTC</property>
+        <property name="hibernate.connection.username">appuser</property>
+        <property name="hibernate.connection.password">apppass</property>
+
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!-- validate : la base est déjà créée par le script SQL (database/clinique_db.sql),
+             Hibernate vérifie juste que les tables correspondent aux entités, sans les modifier. -->
+        <property name="hibernate.hbm2ddl.auto">validate</property>
+
+        <mapping class="org.clinique.modele.Medecin"/>
+        <mapping class="org.clinique.modele.Patient"/>
+        <mapping class="org.clinique.modele.RendezVous"/>
+
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.clinique.vue.MedecinFxmlControleur"
+            prefHeight="620.0" prefWidth="820.0">
+
+    <top>
+        <Label text="Gestion des médecins" BorderPane.alignment="CENTER">
+            <font>
+                <javafx.scene.text.Font name="System Bold" size="20.0"/>
+            </font>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </Label>
+    </top>
+
+    <center>
+        <TableView fx:id="tableMedecins" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="colMedecinId" text="Id" prefWidth="40.0"/>
+                <TableColumn fx:id="colMedecinNom" text="Nom" prefWidth="160.0"/>
+                <TableColumn fx:id="colMedecinPrenom" text="Prénom" prefWidth="160.0"/>
+                <TableColumn fx:id="colMedecinSpecialite" text="Spécialité" prefWidth="160.0"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <VBox spacing="10.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="Médecin :">
+                <font>
+                    <javafx.scene.text.Font name="System Bold" size="13.0"/>
+                </font>
+            </Label>
+
+            <GridPane hgap="10.0" vgap="8.0">
+                <Label text="Nom :" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="champNom" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Prénom :" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                <TextField fx:id="champPrenom" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                <Label text="Spécialité :" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="champSpecialite" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <HBox spacing="10.0">
+                <Button text="Modifier" onAction="#onModifier"/>
+                <Button text="Supprimer" onAction="#onSupprimer"/>
+                <Button text="Effacer le formulaire" onAction="#onEffacer"/>
+                <Button text="Rafraîchir" onAction="#onRafraichir"/>
+                <Button text="Gérer les patients" onAction="#onVoirPatients"/>
+                <Button text="Gérer les rendez-vous" onAction="#onVoirRendezVous"/>
+                <Button text="Enregistrer médecin / patient" onAction="#onVoirInscription"/>
+            </HBox>
+
+            <Label fx:id="labelMessage" textFill="#b00020"/>
+
+            <Label text="Patients du médecin sélectionné :">
+                <font>
+                    <javafx.scene.text.Font name="System Bold" size="13.0"/>
+                </font>
+            </Label>
+
+            <TableView fx:id="tablePatients" prefHeight="150.0">
+                <columns>
+                    <TableColumn fx:id="colPatientId" text="Id" prefWidth="40.0"/>
+                    <TableColumn fx:id="colPatientNom" text="Nom" prefWidth="160.0"/>
+                    <TableColumn fx:id="colPatientPrenom" text="Prénom" prefWidth="160.0"/>
+                    <TableColumn fx:id="colPatientTelephone" text="Téléphone" prefWidth="160.0"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </bottom>
+
+</BorderPane>

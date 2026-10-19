@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- Vue d'enregistrement : un formulaire médecin et un formulaire patient côte à côte. -->
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.clinique.vue.InscriptionFxmlControleur"
+            prefHeight="420.0" prefWidth="920.0">
+
+    <top>
+        <Label text="Enregistrer un médecin / un patient" BorderPane.alignment="CENTER">
+            <font>
+                <javafx.scene.text.Font name="System Bold" size="20.0"/>
+            </font>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </Label>
+    </top>
+
+    <center>
+        <HBox spacing="30.0">
+            <padding>
+                <Insets top="10" right="15" bottom="10" left="15"/>
+            </padding>
+
+            <!-- Formulaire MÉDECIN -->
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                <Label text="Nouveau médecin">
+                    <font>
+                        <javafx.scene.text.Font name="System Bold" size="15.0"/>
+                    </font>
+                </Label>
+
+                <GridPane hgap="10.0" vgap="8.0">
+                    <Label text="Nom * :" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="champMedecinNom" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Prénom * :" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="champMedecinPrenom" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Spécialité * :" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="champMedecinSpecialite" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                </GridPane>
+
+                <Button text="Enregistrer le médecin" onAction="#onEnregistrerMedecin"/>
+                <Label fx:id="messageMedecin" textFill="#b00020" wrapText="true"/>
+            </VBox>
+
+            <!-- Formulaire PATIENT -->
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                <Label text="Nouveau patient">
+                    <font>
+                        <javafx.scene.text.Font name="System Bold" size="15.0"/>
+                    </font>
+                </Label>
+
+                <GridPane hgap="10.0" vgap="8.0">
+                    <Label text="Nom * :" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="champPatientNom" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                    <Label text="Prénom * :" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="champPatientPrenom" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Téléphone :" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="champPatientTelephone" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                    <!-- Clé étrangère medecin_id : on choisit UN médecin parmi ceux de la base -->
+                    <Label text="Médecin * :" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="comboPatientMedecin" prefWidth="250.0" promptText="Choisir un médecin"
+                              GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                </GridPane>
+
+                <Button text="Enregistrer le patient" onAction="#onEnregistrerPatient"/>
+                <Label fx:id="messagePatient" textFill="#b00020" wrapText="true"/>
+            </VBox>
+        </HBox>
+    </center>
+
+    <bottom>
+        <VBox spacing="10.0">
+            <padding>
+                <Insets top="0" right="15" bottom="12" left="15"/>
+            </padding>
+
+            <Label textFill="#707070" text="* champ obligatoire (NOT NULL en base)"/>
+
+            <HBox spacing="10.0">
+                <Button text="Gérer les patients" onAction="#onVoirPatients"/>
+                <Button text="Gérer les médecins" onAction="#onVoirMedecins"/>
+                <Button text="Gérer les rendez-vous" onAction="#onVoirRendezVous"/>
+            </HBox>
+        </VBox>
+    </bottom>
+
+</BorderPane>

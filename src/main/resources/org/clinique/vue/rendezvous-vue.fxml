@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.clinique.vue.RendezVousFxmlControleur"
+            prefHeight="620.0" prefWidth="820.0">
+
+    <top>
+        <Label text="Gestion des rendez-vous" BorderPane.alignment="CENTER">
+            <font>
+                <javafx.scene.text.Font name="System Bold" size="20.0"/>
+            </font>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+        </Label>
+    </top>
+
+    <center>
+        <TableView fx:id="tableRendezVous" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="colDate" text="Date" prefWidth="100.0"/>
+                <TableColumn fx:id="colHeure" text="Heure" prefWidth="70.0"/>
+                <TableColumn fx:id="colMedecin" text="Médecin" prefWidth="300.0"/>
+                <TableColumn fx:id="colPatient" text="Patient" prefWidth="250.0"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <VBox spacing="10.0" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <Label text="Rendez-vous :">
+                <font>
+                    <javafx.scene.text.Font name="System Bold" size="13.0"/>
+                </font>
+            </Label>
+
+            <GridPane hgap="10.0" vgap="8.0">
+                <Label text="Médecin :" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="comboMedecin" prefWidth="260.0" promptText="Choisir un médecin"
+                          GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Patient :" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                <ComboBox fx:id="comboPatient" prefWidth="220.0" promptText="Choisir un patient"
+                          GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+                <Label text="Date :" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="champDate" prefWidth="260.0" promptText="Choisir une date"
+                            GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Créneau :" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                <ComboBox fx:id="comboCreneau" prefWidth="220.0" promptText="Choisir un créneau"
+                          GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+            </GridPane>
+
+            <HBox spacing="10.0">
+                <Button text="Ajouter" onAction="#onAjouter"/>
+                <Button text="Modifier" onAction="#onModifier"/>
+                <Button text="Supprimer" onAction="#onSupprimer"/>
+                <Button text="Effacer le formulaire" onAction="#onEffacer"/>
+                <Button text="Rafraîchir" onAction="#onRafraichir"/>
+                <Button text="Gérer les patients" onAction="#onVoirPatients"/>
+                <Button text="Gérer les médecins" onAction="#onVoirMedecins"/>
+                <Button text="Enregistrer médecin / patient" onAction="#onVoirInscription"/>
+            </HBox>
+
+            <Label fx:id="labelMessage" textFill="#b00020"/>
+        </VBox>
+    </bottom>
+
+</BorderPane>
